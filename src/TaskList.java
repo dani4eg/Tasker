@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public abstract class TaskList implements Iterable, Serializable {
+public abstract class TaskList implements Iterable<Task>, Serializable {
 
     public  int size = 0;
 

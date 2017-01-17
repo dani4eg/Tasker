@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Date;
 
-public class Task implements Cloneable  {
+public class Task implements Cloneable, Serializable {
 
     private String title;
     private Date start;
