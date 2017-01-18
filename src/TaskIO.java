@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.Date;
+import java.util.Iterator;
 
 
 /**
@@ -60,22 +62,51 @@ public class TaskIO {
         }
     }
 
-    public static void write(TaskList tasks, Writer out) {
-        Writer writer = new BufferedWriter(out);
+    public static void write(TaskList tasks, Writer out){
+        try (BufferedWriter writer = new BufferedWriter(out)) {
+            Iterator iter=tasks.iterator();
+            while(iter.hasNext()) {
+                Task task = (Task) iter.next();
+                writer.write(task.toString());
+                if (iter.hasNext()) {
+                    writer.write(";");
+                }
+                else
+                    writer.write(".");
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("error writing chars");
+        }
     }
 
+
     public static void read(TaskList tasks, Reader in) {
-        Reader reader = new BufferedReader(in);
+//        BufferedReader reader = new BufferedReader(in);
+//        String str;
+//        try {
+//            while (reader.ready()) {
+//                if ((str = reader.readLine()) != null) {
+//                    tasks.add(splitString(str));
+//                }
+//
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     public static void  writeText(TaskList tasks, File file) {
+
+        Writer writer = null;
         try {
-            Writer writer = new FileWriter(file);
-            write(tasks, writer);
+            writer = new FileWriter(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        write(tasks, writer);
+}
 
     public static void readText(TaskList tasks, File file) {
         try {
@@ -85,6 +116,22 @@ public class TaskIO {
             e.printStackTrace();
         }
     }
+
+//    public static Task splitString(String str) {
+//        private String[] data;
+//        private String title;
+//        private Date start;
+//        private Date end;
+//        private int interval;
+//        private boolean active;
+//
+//        data = str.split("");
+//     Task task = new Task();
+//
+//        return task;
+//    }
+
+
 
 
 }

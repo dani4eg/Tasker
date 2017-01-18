@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task implements Cloneable, Serializable {
@@ -232,14 +233,20 @@ public class Task implements Cloneable, Serializable {
 
     @Override
     public String toString() {
+        SimpleDateFormat date = new SimpleDateFormat("[YYYY-MM-dd hh:mm:ss.SSS]");
         String text = "";
-        text += "Title: " + this.title;
-        text += ", start: " +  this.start;
-        text += ", end: " + this.end;
-        text += ", interval: " + this.interval;
-        text += ", status: " + (this.active ? "active" : "not active");
-        text += "\n";
-        return text;
+        text += "\"" + this.title + "\"";
+        if (isRepeated()) {
+            text += " from " + date.format(this.start);
+            text += " to " + date.format(this.end);
+            text += " every [" + reInterval(interval) + "]";
+        }
+        else {
+            text += " at " + date.format(this.start);
+        }
+            text +=  (this.active ? " inactive" : "");
+
+            return text;
     }
 
     public Task clone() throws CloneNotSupportedException {
@@ -250,5 +257,37 @@ public class Task implements Cloneable, Serializable {
         else
             task = new Task(this.getTitle(), (Date)this.start.clone(), (Date)this.end.clone(), this.interval);
         return task;
+    }
+
+    public String reInterval(int interval) {
+        int days = interval / 1000 / 86400;
+        int hours = interval / 1000 / 3600 % 24;
+        int minutes = interval / 1000 / 60 % 60;
+        int seconds = interval / 1000 % 60;
+        String txt="";
+        if (days>=1) {
+            txt+= days;
+            if (days>1) txt+= " days";
+            else txt+= " day";
+        }
+        if (hours>=1) {
+            if (txt.equals("")) txt+= hours;
+            else  txt+= " " + hours;
+            if (hours>1) txt+= " hours";
+            else txt+= " hour";
+        }
+        if (minutes>=1) {
+            if (txt.equals("")) txt+= minutes;
+            else  txt+= " " + minutes;
+            if (minutes>1) txt+= " minutes";
+            else txt+= " minute";
+        }
+        if (seconds>=1) {
+            if (txt.equals("")) txt+= seconds;
+            else  txt+= " " + seconds;
+            if (seconds>1) txt+= " seconds";
+            else txt+= " second";
+        }
+        return txt;
     }
 }
