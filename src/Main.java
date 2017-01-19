@@ -20,11 +20,11 @@ public class Main {
         Task task7 = new Task("Task7", 14847315, 1234315062, 148473);
         Task task8 = new Task("Task8", 1484743545, 1984731506, 86402);
 
-        task1.setActive(true);
-        task2.setActive(true);
-        task3.setActive(true);
-        task8.setActive(true);
-        task7.setActive(true);
+//        task1.setActive(true);
+//        task2.setActive(true);
+//        task3.setActive(true);
+//        task8.setActive(true);
+//        task7.setActive(true);
 
 
 
@@ -42,13 +42,14 @@ public class Main {
 //        System.out.println(d.getTime());
 
 
+
         File f = new File("hello.txt");
         TaskIO.readText(list, f);
-        System.out.println(list.size);
 //        System.out.println(list);
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.getTask(i));
-        }
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.getTask(i));
+//        }
+        System.out.println(list);
 
 
 

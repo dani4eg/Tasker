@@ -59,6 +59,9 @@ public class Task implements Cloneable, Serializable {
         this.interval = interval*1000;
     }
 
+    public int getInterval() {
+        return interval;
+    }
     /**
      * метод считывания названия задачи
      * return title название задачи
@@ -234,6 +237,7 @@ public class Task implements Cloneable, Serializable {
     @Override
     public String toString() {
         SimpleDateFormat date = new SimpleDateFormat("[YYYY-MM-dd hh:mm:ss.SSS]");
+
         String text = "";
         text += "\"" + this.title + "\"";
         if (isRepeated()) {

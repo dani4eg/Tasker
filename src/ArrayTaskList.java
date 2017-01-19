@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Iterator;
@@ -169,14 +170,59 @@ public class ArrayTaskList extends TaskList implements Cloneable {
     @Override
     public String toString() {
         String text = "";
-        text += "ArrayTaskList: {";
+        SimpleDateFormat date = new SimpleDateFormat("[YYYY-MM-dd hh:mm:ss.SSS]");
         for (int i = 0; i < size; i++) {
-            text += "[" + getTask(i).getTitle() + "]";
+            text += "\"" + getTask(i).getTitle() + "\"";
+            if (getTask(i).isRepeated()) {
+                text += " from " + date.format(getTask(i).getStartTime());
+                text += " to " + date.format(getTask(i).getEndTime());
+                text += " every [" + reInterval(getTask(i).getInterval()) + "]";
+            }
+            else {
+                text += " at " + date.format(getTask(i).getStartTime());
+            }
+            text +=  (getTask(i).isActive() ? " inactive" : "");
+            if (i!=size-1) text+=";";
+            else text+=".";
+            text += "\n";
         }
-        text += "}";
-        text += " Size = " + size;
         return text;
     }
+
+    public String reInterval(int interval) {
+        int days = interval / 1000 / 86400;
+        int hours = interval / 1000 / 3600 % 24;
+        int minutes = interval / 1000 / 60 % 60;
+        int seconds = interval / 1000 % 60;
+        String txt="";
+        if (days>=1) {
+            txt+= days;
+            if (days>1) txt+= " days";
+            else txt+= " day";
+        }
+        if (hours>=1) {
+            if (txt.equals("")) txt+= hours;
+            else  txt+= " " + hours;
+            if (hours>1) txt+= " hours";
+            else txt+= " hour";
+        }
+        if (minutes>=1) {
+            if (txt.equals("")) txt+= minutes;
+            else  txt+= " " + minutes;
+            if (minutes>1) txt+= " minutes";
+            else txt+= " minute";
+        }
+        if (seconds>=1) {
+            if (txt.equals("")) txt+= seconds;
+            else  txt+= " " + seconds;
+            if (seconds>1) txt+= " seconds";
+            else txt+= " second";
+        }
+        return txt;
+    }
+
+
+
 
     public ArrayTaskList clone() {
         try {
