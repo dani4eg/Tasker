@@ -1,4 +1,5 @@
 import java.io.File;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -6,10 +7,10 @@ import java.util.SortedMap;
 
 public class Main {
 
-    public static void main(String[] args) throws IllegalArgumentException {
+    public static void main(String[] args) throws IllegalArgumentException, ParseException {
 
 
-        Task task1 = new Task("Task1", new Date(), new Date(1984731506204L), 86400);
+        Task task1 = new Task("Task1", new Date(1984731506202L), new Date(1984731506204L), 86400);
         Task task2 = new Task("Task2", 1484743545);
         Task task3 = new Task("Task3", new Date(1484731506204L), new Date(1984731506204L), 20000);
 
@@ -27,24 +28,27 @@ public class Main {
 
 
 
-        ArrayTaskList list = new ArrayTaskList(1);
+        ArrayTaskList list = new ArrayTaskList();
         list.add(task1);
         list.add(task2);
         list.add(task3);
-        list.add(task4);
-        list.add(task5);
-        list.add(task6);
-        list.add(task7);
-        list.add(task8);
+//        list.add(task4);
+//        list.add(task5);
+//        list.add(task6);
+//        list.add(task7);
+//        list.add(task8);
 
-        Date d = new Date();
-        System.out.println(d.getTime());
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.getTask(i).toString());
-        }
+//        Date d = new Date();
+//        System.out.println(d.getTime());
+
 
         File f = new File("hello.txt");
-        TaskIO.writeText(list, f);
+        TaskIO.readText(list, f);
+        System.out.println(list.size);
+//        System.out.println(list);
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.getTask(i));
+        }
 
 
 
