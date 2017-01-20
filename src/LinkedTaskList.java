@@ -12,7 +12,6 @@ public class LinkedTaskList extends TaskList implements Cloneable{
      */
     private Link first;
 
-
     /**
      * Класс Link создает элемент списка
      * task наши данные в виде задач
@@ -26,14 +25,12 @@ public class LinkedTaskList extends TaskList implements Cloneable{
         public Task getTask() {
             return task;
         }
-
         public Link getNext() {
             return next;
         }
         public void setNext(Link next) {
             this.next = next;
         }
-
         public Link(Task task) {
             this.task = task;
         }
@@ -51,8 +48,7 @@ public class LinkedTaskList extends TaskList implements Cloneable{
      */
     @Override
     public void add(Task task) throws NullPointerException {
-        if (task == null )
-        {
+        if (task == null ) {
             throw new NullPointerException ("Добавление пустого элемента");
         }
         Link newLink = new Link(task);
@@ -69,8 +65,7 @@ public class LinkedTaskList extends TaskList implements Cloneable{
      */
     @Override
     public Task getTask(int index) throws NullPointerException {
-        if (index>=size())
-        {
+        if (index>=size()) {
             throw new NullPointerException("Не существующий элемент");
         }
         Link current = first;
@@ -90,8 +85,7 @@ public class LinkedTaskList extends TaskList implements Cloneable{
      */
     @Override
     public boolean remove (Task task)throws NullPointerException {
-        if (task == null )
-        {
+        if (task == null ) {
             throw new NullPointerException ("Удаление пустого элемента");
         }
         Link current = first;
@@ -108,8 +102,7 @@ public class LinkedTaskList extends TaskList implements Cloneable{
         if (current==first) {
             first = first.getNext();
         }
-        else
-            prev.setNext(current.getNext());
+        else prev.setNext(current.getNext());
         size--;
         return true;
     }
@@ -194,12 +187,10 @@ public class LinkedTaskList extends TaskList implements Cloneable{
         if (this == o) return true;
         if (!(o instanceof LinkedTaskList)) return false;
 
-
         LinkedTaskList that = (LinkedTaskList) o;
         if (this.size() == that.size()) {
             Iterator list1 = this.iterator();
             Iterator list2 = that.iterator();
-
             while (list1.hasNext()) {
                 Object o1 = list1.next();
                 Object o2 = list2.next();
@@ -286,7 +277,6 @@ public class LinkedTaskList extends TaskList implements Cloneable{
         catch (CloneNotSupportedException e) {
             throw new InternalError();
         }
-
         return clone;
     }
 

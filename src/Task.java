@@ -124,8 +124,6 @@ public class Task implements Cloneable, Serializable {
         this.interval = 0;
     }
 
-
-
     /**
      * метод возвращает время начала повторяюшейся задачи
      * @return start если задача повторяется, при этом start = start (см конструктор)

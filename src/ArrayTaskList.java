@@ -1,7 +1,6 @@
 import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Iterator;
 import java.util.Arrays;
 
 public class ArrayTaskList extends TaskList implements Cloneable {
@@ -36,8 +35,7 @@ public class ArrayTaskList extends TaskList implements Cloneable {
      */
     public void add(Task task) throws NullPointerException
     {
-        if (task == null )
-        {
+        if (task == null ) {
             throw new NullPointerException ("Добавление пустого элемента");
         }
         if (size >= tasks.length) {
@@ -67,8 +65,7 @@ public class ArrayTaskList extends TaskList implements Cloneable {
      */
     public boolean remove (Task task) throws NullPointerException
     {
-        if (task == null )
-        {
+        if (task == null ) {
             throw new NullPointerException ("Удаление пустого элемента");
         }
         for (int i = 0; i < tasks.length; i++) {
@@ -81,25 +78,12 @@ public class ArrayTaskList extends TaskList implements Cloneable {
         return false;
     }
 
-    /**
-     * Метод возвращает список задач, которые будут выполнены в данном промежутке времени
-     * Создаем новый лист
-     * @param from задача должна быть выполнена не раньше заданного времени
-     * @param to задача должна быть выполнена не позже заданного времени
-     * если время следующего выполнения задачи относительно заданного времени from выполняется не раньше from и не позже to
-     * задача добавляется в список
-     * @return список с задачами
-     */
-
-
-    /**
+     /**
      * Создание итератора
      * @return итератор с переопределенными методами
      */
     public Iterator iterator() {
         return new Iterator() {
-
-
             private Task[] list = tasks;
             private int count;
 

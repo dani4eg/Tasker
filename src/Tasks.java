@@ -5,19 +5,25 @@ import java.util.*;
  */
 public class Tasks {
 
+    /**
+     * Метод возвращает список задач, которые будут выполнены в данном промежутке времени
+     * Создаем новый лист
+     * @param start задача должна быть выполнена не раньше заданного времени
+     * @param end задача должна быть выполнена не позже заданного времени
+     * если время следующего выполнения задачи относительно заданного времени from выполняется не раньше from и не позже to
+     * задача добавляется в список
+     * @return список с задачами
+     */
     public static Iterable<Task> incoming(Iterable<Task> tasks, Date start, Date end) {
         TaskList list = new ArrayTaskList();
         Iterator iterator = tasks.iterator();
-
-        while(iterator.hasNext())
-        {
+        while(iterator.hasNext()) {
             Task task = (Task) iterator.next();
             Date sdate = task.nextTimeAfter(start);
             if ((start.before(sdate) || start.equals(sdate)) && (end.after(sdate) || end.equals(sdate))) {
                 list.add(task);
             }
         }
-
         return list;
     }
 

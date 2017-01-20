@@ -1,9 +1,7 @@
 import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.SortedMap;
+
 
 public class Main {
 
@@ -20,11 +18,11 @@ public class Main {
         Task task7 = new Task("Task7", 14847315, 1234315062, 148473);
         Task task8 = new Task("Task8", 1484743545, 1984731506, 86402);
 
-//        task1.setActive(true);
-//        task2.setActive(true);
-//        task3.setActive(true);
-//        task8.setActive(true);
-//        task7.setActive(true);
+        task1.setActive(true);
+        task2.setActive(true);
+        task3.setActive(true);
+        task8.setActive(true);
+        task7.setActive(true);
 
 
 
@@ -32,27 +30,44 @@ public class Main {
         list.add(task1);
         list.add(task2);
         list.add(task3);
-//        list.add(task4);
-//        list.add(task5);
-//        list.add(task6);
-//        list.add(task7);
-//        list.add(task8);
+        list.add(task4);
+        list.add(task5);
+        list.add(task6);
+        list.add(task7);
+        list.add(task8);
 
-//        Date d = new Date();
-//        System.out.println(d.getTime());
+        LinkedTaskList list2 = new LinkedTaskList();
+        File bFile = new File("bFile.txt");
+        TaskIO.writeBinary(list, bFile);
+        TaskIO.readBinary(list2, bFile);
 
-
-
-        File f = new File("hello.txt");
-        TaskIO.readText(list, f);
-//        System.out.println(list);
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.getTask(i));
-//        }
+        System.out.println("ArrayList. Testing BINARY writing tasks in file");
         System.out.println(list);
+        System.out.println("LinkedList. Testing BINARY reading tasks from file in tasklist");
+        System.out.println(list2);
 
 
 
+
+        LinkedTaskList list3 = new LinkedTaskList();
+        list3.add(task1);
+        list3.add(task2);
+        list3.add(task3);
+        list3.add(task4);
+        list3.add(task5);
+        list3.add(task6);
+        list3.add(task7);
+        list3.add(task8);
+        ArrayTaskList list4 = new ArrayTaskList();
+
+        File tFile = new File("tFile.txt");
+        TaskIO.writeText(list3, tFile);
+        TaskIO.readText(list4,tFile);
+
+        System.out.println("LinkedList. Testing TEXT writing tasks in file");
+        System.out.println(list3);
+        System.out.println("ArrayList. Testing TEXT reading tasks from file in tasklist");
+        System.out.println(list4);
 
 
 
