@@ -83,11 +83,11 @@ public class TaskIO {
      */
     public static void write(TaskList tasks, Writer out){
         try (BufferedWriter writer = new BufferedWriter(out)) {
-            Iterator iter=tasks.iterator();
-            while(iter.hasNext()) {
-                Task task = (Task) iter.next();
+            Iterator it=tasks.iterator();
+            while(it.hasNext()) {
+                Task task = (Task) it.next();
                 writer.write(task.toString());
-                if (iter.hasNext()) {
+                if (it.hasNext()) {
                     writer.write(";");
                 }
                 else
@@ -107,9 +107,9 @@ public class TaskIO {
      */
     public static void read(TaskList tasks, Reader in) throws ParseException {
         try(BufferedReader reader = new BufferedReader(in)) {
-            String stream;
-            while((stream=reader.readLine())!=null){
-                tasks.add(splitString(stream));
+            String str;
+            while((str=reader.readLine())!=null){
+                tasks.add(splitString(str));
             }
         }catch(IOException e){
             System.out.println("Text reading task from stream ERROR");
@@ -137,8 +137,8 @@ public class TaskIO {
      * @throws ParseException
      */
     public static void readText(TaskList tasks, File file) throws ParseException {
-        try (Reader stream = new FileReader(file)) {
-            read(tasks, stream);
+        try (Reader reader = new FileReader(file)) {
+            read(tasks, reader);
         }catch(IOException e){
             System.out.println("Text reading task from file ERROR");
         }
@@ -267,8 +267,4 @@ public class TaskIO {
         }
         return task;
     }
-
-
-
-
 }

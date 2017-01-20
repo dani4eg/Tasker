@@ -279,5 +279,4 @@ public class LinkedTaskList extends TaskList implements Cloneable{
         }
         return clone;
     }
-
 }
